@@ -7,6 +7,7 @@ class Book{
         for(let owner of data.keys()){
             this[owner] = data.get(owner) 
         }
+        this.id=keyword
     }
     add(){
         let  er = {}
@@ -16,7 +17,9 @@ class Book{
             }
         }
         if(Object.keys(er).length === 0){
+                this.id=`${this.id+getidlastbook()}`
                 localStorage.setItem(`${keyword+getidlastbook()}`,JSON.stringify(this))
+                
             return true
         }
         else{
@@ -35,9 +38,8 @@ class Book{
         return books
     }
     static remove(key){
-       
         localStorage.removeItem(key)
-        console.log(this)
+        return true
     }
     edit(){
 
@@ -51,8 +53,9 @@ let delet=()=>{
             e.preventDefault()
             let key = this.parentNode.getAttribute("id")
             if(confirm('volez vous supprime ce  livre ')){
-               Book.remove(key)
+               if(Book.remove(key)){
                 this.parentNode.parentNode.removeChild(this.parentNode)
+               }
             }
         })
         
@@ -130,7 +133,6 @@ for (const book of books) {
     e.preventDefault()
     let data = new FormData(form)
     let b=new Book(data)
-    b.add()
     for (const elemnt of form.querySelectorAll('[name]')) {
         elemnt.value = ''
     }
