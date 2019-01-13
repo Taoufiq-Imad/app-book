@@ -3,6 +3,7 @@
         for(let owner of data.keys()){
             this[owner] = data.get(owner) 
         }
+        this.id=`${keyword+getidlastbook()}`
     }
     add(){
         let  er = {}
@@ -12,7 +13,8 @@
             }
         }
         if(Object.keys(er).length === 0){
-                localStorage.setItem(`${keyword+getidlastbook()}`,JSON.stringify(this))
+            //this.id=`${this.id+getidlastbook()}`
+            localStorage.setItem(this.id,JSON.stringify(this))  
             return true
         }
         else{
@@ -31,26 +33,25 @@
         return books
     }
     static remove(key){
-       
         localStorage.removeItem(key)
-        console.log(this)
+        return true
     }
-    edit(){
-
-    }
-}
-
-let delet=()=>{
-    let buttons = document.getElementsByClassName('delet')
-    for (const button of buttons) {
-        button.addEventListener('click',function(e){//j'ai etilise function par ce que besion de this qui reffirace a button click
-            e.preventDefault()
-            let key = this.parentNode.getAttribute("id")
-            if(confirm('volez vous supprime ce  livre ')){
-               Book.remove(key)
-                this.parentNode.parentNode.removeChild(this.parentNode)
+    
+    modifier(){
+        let  er = {}
+        for(let owner of Object.keys(this)){
+            if(this[owner] === undefined || this[owner] ==='') {
+                er[owner] = "le champ ${owner} est vide"
             }
-        })
-        
+        }
+        if(Object.keys(er).length === 0){
+            this.id=keyedit
+            localStorage.setItem(this.id,JSON.stringify(this))  
+            return true
+        }
+        else{
+            return er
+        }
+
     }
 }
