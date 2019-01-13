@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="app.css">
+    </head>
+    <body>
+        <div>
+            <div class="menu">
+                <ul>
+                    <li>
+                        accuil
+                    </li>
+                    <li>
+                        delet and edit
+                    </li>
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <form method="POST" action="index.html" id="form_book">
+                    <label>title the book</label>
+                    <input type="text" name="title" id="title"></input>
+                    <label>number page the book</label>
+                    <input type="number" name="np_page" id="np_page"></input>
+                    <label>auther the book</label>
+                    <input type="text" name="auther" id="auther"></input>
+                    <label>description</label>
+                    <textarea name="description" id="description"></textarea>
+                    <button type="submit">enregistre</button>
+                </form>
+            </div>
+            <div id="books"></div>
+            <div class="footer">
+
+            </div>
+        </div>
+        <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>
